@@ -1,0 +1,20 @@
+CREATE DEFINER=`root`@`localhost` TRIGGER `orders_sneakers_AFTER_INSERT` AFTER INSERT ON `orders_sneakers` FOR EACH ROW BEGIN
+
+declare currentTotalMoney decimal(13,2);
+declare sneakerPrice decimal(13,2);
+declare updatedTotalMoney decimal(13,2);
+
+select totalMoney
+into currentTotalMoney
+from orders 
+where orders.id = new.id;
+
+select price
+into sneakerPrice
+from sneakers 
+where id = new.sneakerId;
+
+set updatedTotalMoney := currentTotalMoney + sneakerPrice * new.sneakerQty;
+
+update orders set totalMoney = updatedTotalMoney where id = new.id;
+END

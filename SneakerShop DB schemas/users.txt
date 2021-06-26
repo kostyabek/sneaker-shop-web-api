@@ -1,0 +1,21 @@
+CREATE TABLE `users` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(45) NOT NULL,
+  `hashedPassword` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `roleId` int NOT NULL,
+  `firstName` varchar(45) NOT NULL,
+  `lastName` varchar(45) NOT NULL,
+  `patronymic` varchar(45) NOT NULL,
+  `age` int NOT NULL,
+  `genderId` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `gender_UNIQUE` (`username`),
+  UNIQUE KEY `hashedPassword_UNIQUE` (`hashedPassword`),
+  UNIQUE KEY `email_UNIQUE` (`email`),
+  KEY `roleId_idx` (`roleId`),
+  KEY `genderId_idx` (`genderId`),
+  CONSTRAINT `genderId` FOREIGN KEY (`genderId`) REFERENCES `user_genders` (`id`),
+  CONSTRAINT `roleId` FOREIGN KEY (`roleId`) REFERENCES `user_roles` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci

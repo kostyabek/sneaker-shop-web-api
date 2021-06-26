@@ -1,0 +1,67 @@
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\obj\Debug\net5.0\BaseCamp Web API.Api.csproj.AssemblyReference.cache
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\obj\Debug\net5.0\BaseCamp Web API.Api.GeneratedMSBuildEditorConfig.editorconfig
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\obj\Debug\net5.0\BaseCamp Web API.Api.AssemblyInfoInputs.cache
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\obj\Debug\net5.0\BaseCamp Web API.Api.AssemblyInfo.cs
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\obj\Debug\net5.0\BaseCamp Web API.Api.csproj.CoreCompileInputs.cache
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\obj\Debug\net5.0\BaseCamp Web API.Api.MvcApplicationPartsAssemblyInfo.cs
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\obj\Debug\net5.0\BaseCamp Web API.Api.MvcApplicationPartsAssemblyInfo.cache
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\appsettings.Development.json
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\appsettings.json
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\BaseCamp Web API.Api.exe
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\BaseCamp Web API.Api.deps.json
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\BaseCamp Web API.Api.runtimeconfig.json
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\BaseCamp Web API.Api.runtimeconfig.dev.json
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\BaseCamp Web API.Api.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\ref\BaseCamp Web API.Api.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\BaseCamp Web API.Api.pdb
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\AutoMapper.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\Dapper.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\Humanizer.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\Microsoft.OpenApi.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\MySqlConnector.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\SqlKata.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\SqlKata.Execution.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\System.Data.SQLite.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\System.Data.SqlClient.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\runtimes\win-arm64\native\sni.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\runtimes\win-x64\native\sni.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\runtimes\win-x86\native\sni.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\runtimes\linux-x64\native\SQLite.Interop.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\runtimes\osx-x64\native\SQLite.Interop.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\runtimes\win-x64\native\SQLite.Interop.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\runtimes\win-x86\native\SQLite.Interop.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\runtimes\unix\lib\netstandard2.0\System.Data.SqlClient.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Data.SqlClient.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\BaseCamp WEB API.Core.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\BaseCamp WEB API.Data.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\BaseCamp WEB API.Core.pdb
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\BaseCamp WEB API.Data.pdb
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\obj\Debug\net5.0\staticwebassets\BaseCamp Web API.Api.StaticWebAssets.Manifest.cache
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\obj\Debug\net5.0\staticwebassets\BaseCamp Web API.Api.StaticWebAssets.xml
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\obj\Debug\net5.0\scopedcss\bundle\BaseCamp Web API.Api.styles.css
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\obj\Debug\net5.0\BaseCamp Web API.Api.RazorTargetAssemblyInfo.cache
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\obj\Debug\net5.0\BaseCamp Web API.Api.csproj.CopyComplete
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\obj\Debug\net5.0\BaseCamp Web API.Api.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\obj\Debug\net5.0\ref\BaseCamp Web API.Api.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\obj\Debug\net5.0\BaseCamp Web API.Api.pdb
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\obj\Debug\net5.0\BaseCamp Web API.Api.genruntimeconfig.cache
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\FluentValidation.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\FluentValidation.AspNetCore.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\FluentValidation.DependencyInjectionExtensions.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\BaseCamp Web API.Api.xml
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\obj\Debug\net5.0\BaseCamp Web API.Api.xml
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\Microsoft.IdentityModel.Logging.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp Web API.Api\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll

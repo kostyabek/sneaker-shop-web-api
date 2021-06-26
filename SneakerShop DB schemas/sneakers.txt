@@ -1,0 +1,28 @@
+CREATE TABLE `sneaker_market`.`sneakers` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `modelName` VARCHAR(100) NOT NULL,
+  `vendorId` INT NOT NULL,
+  `seasonId` INT NOT NULL,
+  `genderId` INT NOT NULL,
+  `price` REAL NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `idsneakers_UNIQUE` (`id` ASC) VISIBLE,
+  UNIQUE INDEX `modelName_UNIQUE` (`modelName` ASC) VISIBLE,
+  INDEX `vendorId_idx` (`vendorId` ASC) VISIBLE,
+  INDEX `seasonId_idx` (`seasonId` ASC) VISIBLE,
+  INDEX `sneakerGenderId_idx` (`genderId` ASC) VISIBLE,
+  CONSTRAINT `vendorId`
+    FOREIGN KEY (`vendorId`)
+    REFERENCES `sneaker_market`.`vendors` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `seasonId`
+    FOREIGN KEY (`seasonId`)
+    REFERENCES `sneaker_market`.`seasons` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `sneakerGenderId`
+    FOREIGN KEY (`genderId`)
+    REFERENCES `sneaker_market`.`sneaker_genders` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);

@@ -1,0 +1,4 @@
+INSERT INTO `sneaker_market`.`seasons` (`name`) VALUES ('SUMMER');
+INSERT INTO `sneaker_market`.`seasons` (`name`) VALUES ('SPRING SUMMER');
+INSERT INTO `sneaker_market`.`seasons` (`name`) VALUES ('AUTUMN SPRING');
+INSERT INTO `sneaker_market`.`seasons` (`name`) VALUES ('WINTER');

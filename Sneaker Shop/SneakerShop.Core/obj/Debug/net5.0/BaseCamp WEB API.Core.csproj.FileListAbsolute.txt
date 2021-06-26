@@ -1,0 +1,12 @@
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp WEB API.Core\obj\Debug\net5.0\BaseCamp WEB API.Core.csproj.AssemblyReference.cache
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp WEB API.Core\obj\Debug\net5.0\BaseCamp WEB API.Core.GeneratedMSBuildEditorConfig.editorconfig
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp WEB API.Core\obj\Debug\net5.0\BaseCamp WEB API.Core.AssemblyInfoInputs.cache
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp WEB API.Core\obj\Debug\net5.0\BaseCamp WEB API.Core.AssemblyInfo.cs
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp WEB API.Core\obj\Debug\net5.0\BaseCamp WEB API.Core.csproj.CoreCompileInputs.cache
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp WEB API.Core\bin\Debug\net5.0\BaseCamp WEB API.Core.deps.json
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp WEB API.Core\bin\Debug\net5.0\BaseCamp WEB API.Core.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp WEB API.Core\bin\Debug\net5.0\ref\BaseCamp WEB API.Core.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp WEB API.Core\bin\Debug\net5.0\BaseCamp WEB API.Core.pdb
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp WEB API.Core\obj\Debug\net5.0\BaseCamp WEB API.Core.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp WEB API.Core\obj\Debug\net5.0\ref\BaseCamp WEB API.Core.dll
+E:\Rider C# Projects\BaseCamp Web API\BaseCamp WEB API.Core\obj\Debug\net5.0\BaseCamp WEB API.Core.pdb

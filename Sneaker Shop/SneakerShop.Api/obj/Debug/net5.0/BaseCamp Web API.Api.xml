@@ -1,0 +1,538 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BaseCamp Web API.Api</name>
+    </assembly>
+    <members>
+        <member name="T:BaseCamp_Web_API.Configuration.JwtConfig">
+            <summary>
+            Contains JWT secret key.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Configuration.JwtConfig.Secret">
+            <summary>
+            Gets or sets JWT secret key.
+            </summary>
+        </member>
+        <member name="T:BaseCamp_Web_API.Controllers.AuthController">
+            <summary>
+            Controller for authentication processes.
+            </summary>
+        </member>
+        <member name="M:BaseCamp_Web_API.Controllers.AuthController.#ctor(BaseCamp_WEB_API.Core.RepositoryAbstractions.IUserRepository,BaseCamp_WEB_API.Core.RepositoryAbstractions.IRefreshTokenRepository,Microsoft.Extensions.Options.IOptionsMonitor{BaseCamp_Web_API.Configuration.JwtConfig},Microsoft.AspNetCore.Identity.IPasswordHasher{BaseCamp_WEB_API.Core.Entities.User},AutoMapper.IMapper,Microsoft.IdentityModel.Tokens.TokenValidationParameters)">
+            <summary>
+            Initializes a new instance of the <see cref="T:BaseCamp_Web_API.Controllers.AuthController"/> class.
+            </summary>
+            <param name="userRepository">For requests related with users.</param>
+            <param name="refreshTokenRepository">For requests related with refresh tokens.</param>
+            <param name="optionsMonitor">For JWT-token generation.</param>
+            <param name="passwordHasher">For user password hashing.</param>
+            <param name="mapper">For entities mapping.</param>
+            <param name="tokenValidationParameters">For JWT-token validation.</param>
+        </member>
+        <member name="M:BaseCamp_Web_API.Controllers.AuthController.Register(BaseCamp_Web_API.Requests.Authentication.RegisterUserRequest)">
+            <summary>
+            Registers new users.
+            </summary>
+            <param name="userRequest">Request to be processed.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BaseCamp_Web_API.Controllers.AuthController.Login(BaseCamp_Web_API.Requests.Authentication.LoginUserRequest)">
+            <summary>
+            Performs log-in operation for existing users.
+            </summary>
+            <param name="userRequest">Authentication data to process.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BaseCamp_Web_API.Controllers.AuthController.RefreshToken(BaseCamp_Web_API.Requests.Authentication.TokenRequest)">
+            <summary>
+            Refreshes tokens.
+            </summary>
+            <param name="tokenRequest">A token request.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BaseCamp_Web_API.Controllers.AuthController.GenerateJwtToken(BaseCamp_WEB_API.Core.Entities.User)">
+            <summary>
+            Generates a JWT-token.
+            </summary>
+            <param name="user">User entity to get info from.</param>
+            <returns></returns>
+        </member>
+        <member name="T:BaseCamp_Web_API.Controllers.OrdersController">
+            <summary>
+            Controller for order entities.
+            </summary>
+        </member>
+        <member name="M:BaseCamp_Web_API.Controllers.OrdersController.#ctor(BaseCamp_WEB_API.Core.RepositoryAbstractions.IOrderRepository,BaseCamp_WEB_API.Core.RepositoryAbstractions.IOrderSneakerRepository,AutoMapper.IMapper)">
+            <summary>
+            Initializes a new instance of the <see cref="T:BaseCamp_Web_API.Controllers.OrdersController"/> class.
+            </summary>
+            <param name="orderRepository">For request processing to "orders" table.</param>
+            <param name="orderSneakerRepository">For request processing to "orders_sneakers" table.</param>
+            <param name="mapper">For entities mapping.</param>
+        </member>
+        <member name="M:BaseCamp_Web_API.Controllers.OrdersController.Create(BaseCamp_Web_API.Requests.CreateOrderRequest)">
+            <summary>
+            Creates new orders.
+            </summary>
+            <param name="orderRequest">"Order"-object to be created.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BaseCamp_Web_API.Controllers.OrdersController.GetAll(BaseCamp_WEB_API.Core.Entities.PaginationFilter)">
+            <summary>
+            Fetches all the orders.
+            </summary>
+            <param name="paginationFilter">Contains offset and limit for a database query.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BaseCamp_Web_API.Controllers.OrdersController.GetById(System.Int32)">
+            <summary>
+            Fetches orders from with the given ID.
+            </summary>
+            <param name="id">ID of the record.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BaseCamp_Web_API.Controllers.OrdersController.Update(System.Int32,BaseCamp_Web_API.Requests.UpdateOrderRequest)">
+            <summary>
+            Updates an order with the given ID.
+            </summary>
+            <param name="id">ID of the order to update.</param>
+            <param name="orderRequest">Data to process.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BaseCamp_Web_API.Controllers.OrdersController.Delete(System.Int32)">
+            <summary>
+            Deletes orders with the given ID.
+            </summary>
+            <param name="id">ID of the orders to delete.</param>
+            <returns></returns>
+        </member>
+        <member name="T:BaseCamp_Web_API.Controllers.SneakersController">
+            <summary>
+            Controller for sneaker entities.
+            </summary>
+        </member>
+        <member name="M:BaseCamp_Web_API.Controllers.SneakersController.#ctor(BaseCamp_WEB_API.Core.RepositoryAbstractions.ISneakerRepository,AutoMapper.IMapper)">
+            <summary>
+            Initializes a new instance of the <see cref="T:BaseCamp_Web_API.Controllers.SneakersController"/> class.
+            </summary>
+            <param name="sneakerRepository">For request processing.</param>
+            <param name="mapper">For entities mapping.</param>
+        </member>
+        <member name="M:BaseCamp_Web_API.Controllers.SneakersController.Create(BaseCamp_Web_API.Requests.CreateSneakerRequest)">
+            <summary>
+            Creates new records.
+            </summary>
+            <param name="sneakerRequest">Data to be processed.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BaseCamp_Web_API.Controllers.SneakersController.GetAll(BaseCamp_WEB_API.Core.Entities.PaginationFilter)">
+            <summary>
+            Fetches all the sneakers.
+            </summary>
+            <param name="paginationFilter">Contains offset and limit for a database query.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BaseCamp_Web_API.Controllers.SneakersController.GetById(System.Int32)">
+            <summary>
+            Fetches records with the given ID.
+            </summary>
+            <param name="id">ID of the sneaker.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BaseCamp_Web_API.Controllers.SneakersController.Update(System.Int32,BaseCamp_Web_API.Requests.UpdateSneakerRequest)">
+            <summary>
+            Updates a sneaker with the given ID.
+            </summary>
+            <param name="id">ID of a sneaker to update.</param>
+            <param name="sneakerRequest">Data to be processed.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BaseCamp_Web_API.Controllers.SneakersController.Delete(System.Int32)">
+            <summary>
+            Deletes a sneaker with the given ID.
+            </summary>
+            <param name="id">ID of a sneaker to delete.</param>
+            <returns></returns>
+        </member>
+        <member name="T:BaseCamp_Web_API.Controllers.UsersController">
+            <summary>
+            Controller for user entities.
+            </summary>
+        </member>
+        <member name="M:BaseCamp_Web_API.Controllers.UsersController.#ctor(BaseCamp_WEB_API.Core.RepositoryAbstractions.IUserRepository,AutoMapper.IMapper)">
+            <summary>
+            Initializes a new instance of the <see cref="T:BaseCamp_Web_API.Controllers.UsersController"/> class.
+            Constructor for this controller.
+            </summary>
+            <param name="userRepository">For request processing.</param>
+            <param name="mapper">For entities mapping.</param>
+        </member>
+        <member name="M:BaseCamp_Web_API.Controllers.UsersController.GetAll(BaseCamp_WEB_API.Core.Entities.PaginationFilter)">
+            <summary>
+            Fetches all the users.
+            </summary>
+            <param name="paginationFilter">Contains offset and limit for a database query.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BaseCamp_Web_API.Controllers.UsersController.GetById(System.Int32)">
+            <summary>
+            Fetches a user with the given ID.
+            </summary>
+            <param name="id">ID of a user.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BaseCamp_Web_API.Controllers.UsersController.UpdateGeneralInfo(System.Int32,BaseCamp_Web_API.Requests.UpdateUserRequest)">
+            <summary>
+            Updates a user with the given ID.
+            </summary>
+            <param name="id">ID of a user to update.</param>
+            <param name="userRequest">"Data to be processed.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BaseCamp_Web_API.Controllers.UsersController.Delete(System.Int32)">
+            <summary>
+            Deletes a user with the given ID.
+            </summary>
+            <param name="id">ID of a user to delete.</param>
+            <returns></returns>
+        </member>
+        <member name="T:BaseCamp_Web_API.MappingProfile">
+            <summary>
+            Maps entities by their correspondent entities.
+            </summary>
+        </member>
+        <member name="M:BaseCamp_Web_API.MappingProfile.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:BaseCamp_Web_API.MappingProfile"/> class.
+            </summary>
+        </member>
+        <member name="T:BaseCamp_Web_API.Requests.Authentication.LoginUserRequest">
+            <summary>
+            Contains user log-in credentials.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Requests.Authentication.LoginUserRequest.Username">
+            <summary>
+            Gets or sets provided username.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Requests.Authentication.LoginUserRequest.Password">
+            <summary>
+            Gets or sets provided password.
+            </summary>
+        </member>
+        <member name="T:BaseCamp_Web_API.Requests.Authentication.RegisterUserRequest">
+            <summary>
+            Entity for working with "create" requests.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Requests.Authentication.RegisterUserRequest.Username">
+            <summary>
+            Gets or sets provided username.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Requests.Authentication.RegisterUserRequest.Password">
+            <summary>
+            Gets or sets provided password.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Requests.Authentication.RegisterUserRequest.Email">
+            <summary>
+            Gets or sets user's e-mail.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Requests.Authentication.RegisterUserRequest.RoleId">
+            <summary>
+            Gets or sets user's role.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Requests.Authentication.RegisterUserRequest.FirstName">
+            <summary>
+            Gets or sets user's first name.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Requests.Authentication.RegisterUserRequest.LastName">
+            <summary>
+            Gets or sets user's last name.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Requests.Authentication.RegisterUserRequest.Patronymic">
+            <summary>
+            Gets or sets user's patronymic.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Requests.Authentication.RegisterUserRequest.Age">
+            <summary>
+            Gets or sets user's age.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Requests.Authentication.RegisterUserRequest.GenderId">
+            <summary>
+            Gets or sets user's sex.
+            </summary>
+        </member>
+        <member name="T:BaseCamp_Web_API.Requests.Authentication.TokenRequest">
+            <summary>
+            Represents token requests.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Requests.Authentication.TokenRequest.Token">
+            <summary>
+            Gets or sets current token.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Requests.Authentication.TokenRequest.RefreshToken">
+            <summary>
+            Gets or sets current refresh token.
+            </summary>
+        </member>
+        <member name="T:BaseCamp_Web_API.Requests.CreateOrderRequest">
+            <summary>
+            Entity for working with "create" requests.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Requests.CreateOrderRequest.UserId">
+            <summary>
+            Gets or sets order's user ID.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Requests.CreateOrderRequest.DateTimeStamp">
+            <summary>
+            Gets or sets date and time of an order.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Requests.CreateOrderRequest.TotalMoney">
+            <summary>
+            Gets or sets total sum of money to pay for an order.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Requests.CreateOrderRequest.DeliveryAddress">
+            <summary>
+            Gets or sets delivery address.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Requests.CreateOrderRequest.Sneakers">
+            <summary>
+            Gets or sets ordered sneakers and their quantity.
+            </summary>
+        </member>
+        <member name="T:BaseCamp_Web_API.Requests.CreateSneakerRequest">
+            <summary>
+            Entity for working with "create" requests.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Requests.CreateSneakerRequest.ModelName">
+            <summary>
+            Gets or sets sneaker model name.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Requests.CreateSneakerRequest.VendorId">
+            <summary>
+            Gets or sets sneaker vendor.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Requests.CreateSneakerRequest.SeasonId">
+            <summary>
+            Gets or sets sneaker season of wearing.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Requests.CreateSneakerRequest.GenderId">
+            <summary>
+            Gets or sets sneaker target gender.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Requests.CreateSneakerRequest.Price">
+            <summary>
+            Gets or sets sneaker price.
+            </summary>
+        </member>
+        <member name="T:BaseCamp_Web_API.Requests.UpdateOrderRequest">
+            <summary>
+            Entity for "update" requests.
+            </summary>
+        </member>
+        <member name="T:BaseCamp_Web_API.Requests.UpdateSneakerRequest">
+            <summary>
+            Entity for "update" requests.
+            </summary>
+        </member>
+        <member name="T:BaseCamp_Web_API.Requests.UpdateUserRequest">
+            <summary>
+            Entity for general "update" requests.
+            </summary>
+        </member>
+        <member name="T:BaseCamp_Web_API.Responses.Authentication.AuthResponse">
+            <summary>
+            Gives information about authentication result.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Responses.Authentication.AuthResponse.Success">
+            <summary>
+            Gets or sets a value indicating whether indicates whether the registration is successful or not.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Responses.Authentication.AuthResponse.Token">
+            <summary>
+            Gets or sets current token.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Responses.Authentication.AuthResponse.RefreshToken">
+            <summary>
+            Gets or sets current refresh token.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Responses.Authentication.AuthResponse.Errors">
+            <summary>
+            Gets or sets collection of occurred errors.
+            </summary>
+        </member>
+        <member name="T:BaseCamp_Web_API.Responses.Authentication.RegisterUserResponse">
+            <summary>
+            Entity for user registration responses.
+            </summary>
+        </member>
+        <member name="T:BaseCamp_Web_API.Responses.GetUserResponse">
+            <summary>
+            Entity for "get" requests.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Responses.GetUserResponse.Username">
+            <summary>
+            Gets or sets user's username.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Responses.GetUserResponse.HashedPassword">
+            <summary>
+            Gets or sets user's password.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Responses.GetUserResponse.Email">
+            <summary>
+            Gets or sets user's e-mail.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Responses.GetUserResponse.RoleId">
+            <summary>
+            Gets or sets user's role.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Responses.GetUserResponse.FirstName">
+            <summary>
+            Gets or sets user's first name.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Responses.GetUserResponse.LastName">
+            <summary>
+            Gets or sets user's last name.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Responses.GetUserResponse.Patronymic">
+            <summary>
+            Gets or sets user's patronymic.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Responses.GetUserResponse.Age">
+            <summary>
+            Gets or sets user's age.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Responses.GetUserResponse.GenderId">
+            <summary>
+            Gets or sets user's sex.
+            </summary>
+        </member>
+        <member name="T:BaseCamp_Web_API.Responses.OrderResponse">
+            <summary>
+            Entity for "get" requests.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Responses.OrderResponse.UserId">
+            <summary>
+            Gets or sets order's user ID.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Responses.OrderResponse.DateTimeStamp">
+            <summary>
+            Gets or sets date and time of an order.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Responses.OrderResponse.TotalMoney">
+            <summary>
+            Gets or sets total sum of money to pay for an order.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Responses.OrderResponse.DeliveryAddress">
+            <summary>
+            Gets or sets delivery address.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Responses.OrderResponse.Sneakers">
+            <summary>
+            Gets or sets ordered sneakers and their quantity.
+            </summary>
+        </member>
+        <member name="T:BaseCamp_Web_API.Responses.SneakerResponse">
+            <summary>
+            Entity for "get" requests.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Responses.SneakerResponse.ModelName">
+            <summary>
+            Gets or sets sneaker model name.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Responses.SneakerResponse.VendorId">
+            <summary>
+            Gets or sets sneaker vendor.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Responses.SneakerResponse.SeasonId">
+            <summary>
+            Gets or sets sneaker season of wearing.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Responses.SneakerResponse.GenderId">
+            <summary>
+            Gets or sets sneaker target gender.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Responses.SneakerResponse.Price">
+            <summary>
+            Gets or sets sneaker price.
+            </summary>
+        </member>
+        <member name="T:BaseCamp_Web_API.Validators.OrderValidator">
+            <summary>
+            Validator for data received from order-related requests.
+            </summary>
+        </member>
+        <member name="M:BaseCamp_Web_API.Validators.OrderValidator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:BaseCamp_Web_API.Validators.OrderValidator"/> class.
+            </summary>
+        </member>
+        <member name="T:BaseCamp_Web_API.Validators.SneakerValidator">
+            <summary>
+            Validator for data received from user sneaker-related requests.
+            </summary>
+        </member>
+        <member name="M:BaseCamp_Web_API.Validators.SneakerValidator.#ctor(BaseCamp_WEB_API.Core.RepositoryAbstractions.IVendorRepository,BaseCamp_WEB_API.Core.RepositoryAbstractions.ISeasonRepository)">
+            <summary>
+            Initializes a new instance of the <see cref="T:BaseCamp_Web_API.Validators.SneakerValidator"/> class.
+            </summary>
+            <param name="vendorRepository">For accessing data about vendors.</param>
+            <param name="seasonRepository">For accessing data about seasons.</param>
+        </member>
+        <member name="T:BaseCamp_Web_API.Validators.UserRegistrationRequestValidator">
+            <summary>
+            Validates User
+            </summary>
+        </member>
+        <member name="M:BaseCamp_Web_API.Validators.UserRegistrationRequestValidator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:BaseCamp_Web_API.Validators.UserRegistrationRequestValidator"/> class.
+            </summary>
+        </member>
+    </members>
+</doc>

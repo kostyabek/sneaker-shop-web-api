@@ -1,0 +1,14 @@
+INSERT INTO `sneaker_market`.`vendors` (`name`) VALUES ('NIKE');
+INSERT INTO `sneaker_market`.`vendors` (`name`) VALUES ('PUMA');
+INSERT INTO `sneaker_market`.`vendors` (`name`) VALUES ('ADIDAS');
+INSERT INTO `sneaker_market`.`vendors` (`name`) VALUES ('ASICS TIGER');
+INSERT INTO `sneaker_market`.`vendors` (`name`) VALUES ('ONITSUKA TIGER');
+INSERT INTO `sneaker_market`.`vendors` (`name`) VALUES ('NEW BALANCE');
+INSERT INTO `sneaker_market`.`vendors` (`name`) VALUES ('REEBOK');
+INSERT INTO `sneaker_market`.`vendors` (`name`) VALUES ('SALOMON');
+INSERT INTO `sneaker_market`.`vendors` (`name`) VALUES ('MERREL');
+INSERT INTO `sneaker_market`.`vendors` (`name`) VALUES ('JACK WOLFSKIN');
+INSERT INTO `sneaker_market`.`vendors` (`name`) VALUES ('VANS');
+INSERT INTO `sneaker_market`.`vendors` (`name`) VALUES ('CONVERSE');
+INSERT INTO `sneaker_market`.`vendors` (`name`) VALUES ('BONA');
+INSERT INTO `sneaker_market`.`vendors` (`name`) VALUES ('DIADORA');

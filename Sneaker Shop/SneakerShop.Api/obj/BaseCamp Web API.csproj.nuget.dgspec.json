@@ -1,0 +1,91 @@
+{
+  "format": 1,
+  "restore": {
+    "E:\\Rider C# Projects\\BaseCamp Web API\\BaseCamp Web API\\BaseCamp Web API.csproj": {}
+  },
+  "projects": {
+    "E:\\Rider C# Projects\\BaseCamp Web API\\BaseCamp Web API\\BaseCamp Web API.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\Rider C# Projects\\BaseCamp Web API\\BaseCamp Web API\\BaseCamp Web API.csproj",
+        "projectName": "BaseCamp Web API",
+        "projectPath": "E:\\Rider C# Projects\\BaseCamp Web API\\BaseCamp Web API\\BaseCamp Web API.csproj",
+        "packagesPath": "C:\\Users\\kosty\\.nuget\\packages\\",
+        "outputPath": "E:\\Rider C# Projects\\BaseCamp Web API\\BaseCamp Web API\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\kosty\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[10.1.1, )"
+            },
+            "SqlKata": {
+              "target": "Package",
+              "version": "[2.3.2, )"
+            },
+            "SqlKata.Execution": {
+              "target": "Package",
+              "version": "[2.3.2, )"
+            },
+            "StyleCop.Analyzers": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.1.118, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[5.6.3, )"
+            },
+            "System.Data.SQLite.Core": {
+              "target": "Package",
+              "version": "[1.0.114, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

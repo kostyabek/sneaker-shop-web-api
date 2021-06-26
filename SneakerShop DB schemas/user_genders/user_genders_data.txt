@@ -1,0 +1,2 @@
+INSERT INTO `sneaker_market`.`user_genders` (`gender`) VALUES ('MALE');
+INSERT INTO `sneaker_market`.`user_genders` (`gender`) VALUES ('FEMALE');

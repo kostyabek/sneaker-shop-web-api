@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <RootNamespace>BaseCamp_WEB_API.Data</RootNamespace>
+        <CodeAnalysisRuleSet>../StyleCopRules.ruleset</CodeAnalysisRuleSet>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MySqlConnector" Version="1.3.9" />
+      <PackageReference Include="SqlKata.Execution" Version="2.3.2" />
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.4" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\SneakerShop.Core\SneakerShop.Core.csproj" />
+    </ItemGroup>
+
+</Project>

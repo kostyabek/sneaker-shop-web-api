@@ -1,0 +1,3 @@
+INSERT INTO `sneaker_market`.`user_roles` (`role`) VALUES ('ADMIN');
+INSERT INTO `sneaker_market`.`user_roles` (`role`) VALUES ('MODERATOR');
+INSERT INTO `sneaker_market`.`user_roles` (`role`) VALUES ('CUSTOMER');

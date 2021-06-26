@@ -1,0 +1,12 @@
+E:\Rider C# Projects\BaseCamp Web API\SneakerShop.Core\bin\Debug\net5.0\SneakerShop.Core.deps.json
+E:\Rider C# Projects\BaseCamp Web API\SneakerShop.Core\bin\Debug\net5.0\SneakerShop.Core.dll
+E:\Rider C# Projects\BaseCamp Web API\SneakerShop.Core\bin\Debug\net5.0\ref\SneakerShop.Core.dll
+E:\Rider C# Projects\BaseCamp Web API\SneakerShop.Core\bin\Debug\net5.0\SneakerShop.Core.pdb
+E:\Rider C# Projects\BaseCamp Web API\SneakerShop.Core\obj\Debug\net5.0\SneakerShop.Core.csproj.AssemblyReference.cache
+E:\Rider C# Projects\BaseCamp Web API\SneakerShop.Core\obj\Debug\net5.0\SneakerShop.Core.GeneratedMSBuildEditorConfig.editorconfig
+E:\Rider C# Projects\BaseCamp Web API\SneakerShop.Core\obj\Debug\net5.0\SneakerShop.Core.AssemblyInfoInputs.cache
+E:\Rider C# Projects\BaseCamp Web API\SneakerShop.Core\obj\Debug\net5.0\SneakerShop.Core.AssemblyInfo.cs
+E:\Rider C# Projects\BaseCamp Web API\SneakerShop.Core\obj\Debug\net5.0\SneakerShop.Core.csproj.CoreCompileInputs.cache
+E:\Rider C# Projects\BaseCamp Web API\SneakerShop.Core\obj\Debug\net5.0\SneakerShop.Core.dll
+E:\Rider C# Projects\BaseCamp Web API\SneakerShop.Core\obj\Debug\net5.0\ref\SneakerShop.Core.dll
+E:\Rider C# Projects\BaseCamp Web API\SneakerShop.Core\obj\Debug\net5.0\SneakerShop.Core.pdb

@@ -1,0 +1,6 @@
+CREATE TABLE `sneaker_market`.`user_roles` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `role` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `iduser_roles_UNIQUE` (`id` ASC) VISIBLE,
+  UNIQUE INDEX `role_UNIQUE` (`role` ASC) VISIBLE);

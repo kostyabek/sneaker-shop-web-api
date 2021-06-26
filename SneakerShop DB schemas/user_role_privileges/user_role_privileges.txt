@@ -1,0 +1,13 @@
+CREATE TABLE `user_role_privileges` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `roleId` int NOT NULL,
+  `resource` varchar(45) NOT NULL,
+  `create` bit(1) NOT NULL,
+  `get` bit(1) NOT NULL,
+  `update` bit(1) NOT NULL,
+  `delete` bit(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  KEY `roleId_idx` (`roleId`),
+  CONSTRAINT `userRoleId` FOREIGN KEY (`roleId`) REFERENCES `user_roles` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
