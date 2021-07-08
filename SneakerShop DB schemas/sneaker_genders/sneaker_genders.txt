@@ -1,6 +1,7 @@
-CREATE TABLE `sneaker_market`.`sneaker_genders` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `gender` VARCHAR(45) NOT NULL,
+CREATE TABLE `sneaker_genders` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `gender` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
-  UNIQUE INDEX `gender_UNIQUE` (`gender` ASC) VISIBLE);
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `gender_UNIQUE` (`gender`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci

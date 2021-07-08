@@ -1,0 +1,8 @@
+CREATE TABLE `claims` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `type` varchar(100) NOT NULL,
+  `value` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `name_UNIQUE` (`type`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci

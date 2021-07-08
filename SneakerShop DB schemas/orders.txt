@@ -2,10 +2,13 @@ CREATE TABLE `orders` (
   `id` int NOT NULL AUTO_INCREMENT,
   `userId` int NOT NULL,
   `dateTimeStamp` datetime NOT NULL,
-  `totalMoney` decimal(13,2) unsigned NOT NULL DEFAULT '0.00',
+  `totalMoney` decimal(13,2) DEFAULT '0.00',
   `deliveryAddress` varchar(100) NOT NULL,
+  `statusId` int NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `userId_idx` (`userId`),
+  KEY `orderStatusId_idx` (`statusId`),
+  CONSTRAINT `orderStatusId` FOREIGN KEY (`statusId`) REFERENCES `order_statuses` (`id`),
   CONSTRAINT `userId` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci

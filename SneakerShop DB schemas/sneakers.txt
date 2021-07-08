@@ -1,28 +1,17 @@
-CREATE TABLE `sneaker_market`.`sneakers` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `modelName` VARCHAR(100) NOT NULL,
-  `vendorId` INT NOT NULL,
-  `seasonId` INT NOT NULL,
-  `genderId` INT NOT NULL,
-  `price` REAL NOT NULL,
+CREATE TABLE `sneakers` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `modelName` varchar(100) NOT NULL,
+  `vendorId` int NOT NULL,
+  `seasonId` int NOT NULL,
+  `genderId` int NOT NULL,
+  `price` double NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `idsneakers_UNIQUE` (`id` ASC) VISIBLE,
-  UNIQUE INDEX `modelName_UNIQUE` (`modelName` ASC) VISIBLE,
-  INDEX `vendorId_idx` (`vendorId` ASC) VISIBLE,
-  INDEX `seasonId_idx` (`seasonId` ASC) VISIBLE,
-  INDEX `sneakerGenderId_idx` (`genderId` ASC) VISIBLE,
-  CONSTRAINT `vendorId`
-    FOREIGN KEY (`vendorId`)
-    REFERENCES `sneaker_market`.`vendors` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `seasonId`
-    FOREIGN KEY (`seasonId`)
-    REFERENCES `sneaker_market`.`seasons` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `sneakerGenderId`
-    FOREIGN KEY (`genderId`)
-    REFERENCES `sneaker_market`.`sneaker_genders` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+  UNIQUE KEY `idsneakers_UNIQUE` (`id`),
+  UNIQUE KEY `modelName_UNIQUE` (`modelName`),
+  KEY `vendorId_idx` (`vendorId`),
+  KEY `seasonId_idx` (`seasonId`),
+  KEY `sneakerGenderId_idx` (`genderId`),
+  CONSTRAINT `seasonId` FOREIGN KEY (`seasonId`) REFERENCES `seasons` (`id`),
+  CONSTRAINT `sneakerGenderId` FOREIGN KEY (`genderId`) REFERENCES `sneaker_genders` (`id`),
+  CONSTRAINT `vendorId` FOREIGN KEY (`vendorId`) REFERENCES `vendors` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci

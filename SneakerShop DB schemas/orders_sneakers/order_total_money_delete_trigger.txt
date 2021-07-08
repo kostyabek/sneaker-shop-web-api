@@ -1,0 +1,21 @@
+CREATE DEFINER=`root`@`localhost` TRIGGER `orders_sneakers_AFTER_DELETE` AFTER DELETE ON `orders_sneakers` FOR EACH ROW BEGIN
+
+declare currentTotalMoney decimal(13,2);
+declare oldSneakerPrice decimal(13,2);
+declare updatedTotalMoney decimal(13,2);
+
+select totalMoney
+into currentTotalMoney
+from orders 
+where orders.id = old.id;
+
+select price
+into oldSneakerPrice
+from sneakers 
+where id = old.sneakerId;
+
+set updatedTotalMoney := currentTotalMoney - oldSneakerPrice * old.sneakerQty;
+
+update orders set totalMoney = updatedTotalMoney where id = old.id;
+
+END

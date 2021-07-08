@@ -1,0 +1,11 @@
+CREATE TABLE `policies_claims` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `policyId` int NOT NULL,
+  `claimId` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  KEY `policyId_idx` (`policyId`),
+  KEY `claimId_idx` (`claimId`),
+  CONSTRAINT `claimId` FOREIGN KEY (`claimId`) REFERENCES `claims` (`id`),
+  CONSTRAINT `policyId` FOREIGN KEY (`policyId`) REFERENCES `policies` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci

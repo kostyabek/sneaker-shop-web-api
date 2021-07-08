@@ -2,8 +2,8 @@ CREATE TABLE `orders_sneakers` (
   `id` int NOT NULL,
   `sneakerId` int NOT NULL,
   `sneakerQty` int NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id`,`sneakerId`),
   KEY `sneakerId_idx` (`sneakerId`),
-  CONSTRAINT `orderId` FOREIGN KEY (`id`) REFERENCES `orders` (`id`),
+  CONSTRAINT `orderId` FOREIGN KEY (`id`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `sneakerId` FOREIGN KEY (`sneakerId`) REFERENCES `sneakers` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci

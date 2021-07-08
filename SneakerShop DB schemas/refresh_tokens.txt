@@ -1,19 +1,14 @@
-CREATE TABLE `sneaker_market`.`refresh_tokens` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `userId` INT NOT NULL,
-  `token` VARCHAR(100) NOT NULL,
-  `jwtId` INT NOT NULL,
-  `isUsed` TINYINT NOT NULL,
-  `isRevoked` TINYINT NOT NULL,
-  `addedDate` DATETIME NOT NULL,
-  `expiryDate` DATETIME NOT NULL,
+CREATE TABLE `refresh_tokens` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `userId` int NOT NULL,
+  `token` varchar(100) NOT NULL,
+  `jwtId` varchar(100) NOT NULL,
+  `isUsed` tinyint NOT NULL,
+  `isRevoked` tinyint NOT NULL,
+  `creationDate` datetime NOT NULL,
+  `expiryDate` datetime NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
-  UNIQUE INDEX `userId_UNIQUE` (`userId` ASC) VISIBLE,
-  UNIQUE INDEX `token_UNIQUE` (`token` ASC) VISIBLE,
-  UNIQUE INDEX `jwtId_UNIQUE` (`jwtId` ASC) VISIBLE,
-  CONSTRAINT `tokenUserId`
-    FOREIGN KEY (`userId`)
-    REFERENCES `sneaker_market`.`users` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `token_UNIQUE` (`token`),
+  UNIQUE KEY `jwtId_UNIQUE` (`jwtId`)
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci

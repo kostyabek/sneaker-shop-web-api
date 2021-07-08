@@ -1,0 +1,125 @@
+﻿using System.Linq;
+using BaseCamp_WEB_API.Core.Filters;
+using BaseCamp_Web_API.Tests.Fixtures.Controllers;
+using FluentAssertions;
+using Microsoft.AspNetCore.Mvc;
+using Xunit;
+
+namespace BaseCamp_Web_API.Tests.Tests.Controllers
+{
+    /// <summary>
+    /// Contains unit tests for UsersController.
+    /// </summary>
+    public class UsersControllerTests : IClassFixture<UsersControllerTestsFixture>
+    {
+        private readonly UsersControllerTestsFixture _fixture;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UsersControllerTests"/> class.
+        /// </summary>
+        /// <param name="fixture">Contains resources for tests.</param>
+        public UsersControllerTests(UsersControllerTestsFixture fixture)
+        {
+            _fixture = fixture;
+            _fixture.ResetUsersCollection();
+            _fixture.ResetOrderCollection();
+            _fixture.ResetOrderSneakerCollection();
+        }
+
+        /// <summary>
+        /// Tests controller response when fetching all of the existing users.
+        /// </summary>
+        [Fact]
+        public async void UsersController_FetchingAllUsers_OkObjectResultWithAllExistingUsers()
+        {
+            // Arrange
+            var existingUsers = _fixture.Users;
+
+            // Act
+            var actionResult = await _fixture.Controller.GetAllAsync(new PaginationFilter());
+
+            // Assert
+            actionResult.Should().BeOfType<OkObjectResult>()
+                .Which.Value.Should().BeEquivalentTo(existingUsers);
+        }
+
+        /// <summary>
+        /// Tests controller response when fetching a user by invalid ID.
+        /// </summary>
+        /// <param name="id">ID of a user to fetch.</param>
+        [Theory]
+        [InlineData(-1)]
+        [InlineData(0)]
+        [InlineData(1000)]
+        public async void UsersController_FetchingUserByID_OkObjectResultWithEmptyIEnumerable(int id)
+        {
+            // Arrange
+
+            // Act
+            var actionResult = await _fixture.Controller.GetByIdAsync(id);
+
+            // Assert
+            actionResult.Should().BeOfType<NotFoundResult>();
+        }
+
+        /// <summary>
+        /// Tests controller response when fetching a user by valid ID.
+        /// </summary>
+        [Fact]
+        public async void UsersController_FetchingUserByID_OkObjectResultWithIEnumerableWithUser()
+        {
+            // Arrange
+            var existingId = _fixture.GetAllUsers().ToList()[0].Id;
+            var existingUser = _fixture.GetUserById(existingId);
+
+            // Act
+            var actionResult = await _fixture.Controller.GetByIdAsync(existingId);
+
+            // Assert
+            actionResult.Should().BeOfType<OkObjectResult>()
+                .Which.Value.Should().BeEquivalentTo(existingUser);
+        }
+
+        /// <summary>
+        /// Tests controller response when fetching specific user's orders by invalid user ID.
+        /// </summary>
+        /// <param name="userId">ID of a user to get.</param>
+        [Theory]
+        [InlineData(-1)]
+        [InlineData(0)]
+        [InlineData(1)]
+        [InlineData(1000)]
+        public async void UsersController_FetchingOrdersByUserID_NotFoundResult(int userId)
+        {
+            // Arrange
+
+            // Act
+            var actionResult = await _fixture.Controller.GetOrdersByUserIdAsync(userId);
+
+            // Assert
+            actionResult.Should().BeOfType<NotFoundResult>();
+        }
+
+        /// <summary>
+        /// Tests controller response when fetching specific user's orders by valid user ID.
+        /// </summary>
+        [Fact]
+        public async void OrdersController_FetchingOrdersByUserID_OkObjectResultWithIEnumerableWithOrders()
+        {
+            // Arrange
+            var existingUserId = 5;
+            var orders = _fixture.GetOrdersByUserId(existingUserId);
+            foreach (var order in orders)
+            {
+                order.Sneakers = _fixture.GetSneakersByOrderId(order.Id)
+                    .ToDictionary(os => os.SneakerId, os => os.SneakerQty);
+            }
+
+            // Act
+            var actionResult = await _fixture.Controller.GetOrdersByUserIdAsync(existingUserId);
+
+            // Assert
+            actionResult.Should().BeOfType<OkObjectResult>().Which.Value.Should().BeEquivalentTo(orders);
+        }
+    }
+}

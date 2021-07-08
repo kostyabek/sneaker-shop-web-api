@@ -18,4 +18,4 @@ CREATE TABLE `users` (
   KEY `genderId_idx` (`genderId`),
   CONSTRAINT `genderId` FOREIGN KEY (`genderId`) REFERENCES `user_genders` (`id`),
   CONSTRAINT `roleId` FOREIGN KEY (`roleId`) REFERENCES `user_roles` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
