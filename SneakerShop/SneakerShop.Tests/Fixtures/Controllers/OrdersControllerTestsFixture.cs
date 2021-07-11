@@ -46,6 +46,11 @@ namespace BaseCamp_Web_API.Tests.Fixtures.Controllers
         public IEnumerable<OrderSneakerPair> OrderSneakers;
 
         /// <summary>
+        /// Represents a user with a collection of claims.
+        /// </summary>
+        public ClaimsPrincipal TestUser;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="OrdersControllerTestsFixture"/> class.
         /// </summary>
         public OrdersControllerTestsFixture()
@@ -83,8 +88,8 @@ namespace BaseCamp_Web_API.Tests.Fixtures.Controllers
 
             Controller = new OrdersController(orderRepositoryMock.Object, orderSneakerRepositoryMock.Object, Mapper);
             Controller.ControllerContext = new ControllerContext();
-            var user = new ClaimsPrincipal(new ClaimsIdentity(new[] { new Claim(ClaimTypes.Sid, "5") }));
-            Controller.ControllerContext.HttpContext = new DefaultHttpContext { User = user };
+            TestUser = new ClaimsPrincipal(new ClaimsIdentity(new[] { new Claim(ClaimTypes.Sid, "5") }));
+            Controller.ControllerContext.HttpContext = new DefaultHttpContext { User = TestUser };
         }
 
         /// <summary>
@@ -161,6 +166,16 @@ namespace BaseCamp_Web_API.Tests.Fixtures.Controllers
         public void ResetOrderSneakerCollection()
         {
             OrderSneakers = GetAllOrderSneakers();
+        }
+
+        /// <summary>
+        /// Changes user's ID claim to a given value.
+        /// </summary>
+        /// <param name="id">New value of the ID claim.</param>
+        public void ChangeUserIdInContext(int id)
+        {
+            TestUser = new ClaimsPrincipal(new ClaimsIdentity(new[] { new Claim(ClaimTypes.Sid, id.ToString()) }));
+            Controller.ControllerContext.HttpContext = new DefaultHttpContext { User = TestUser };
         }
     }
 }

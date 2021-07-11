@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using BaseCamp_Web_API.Api;
+using BaseCamp_Web_API.Api.Providers;
+using BaseCamp_Web_API.Api.Providers.DateAndTime;
 using BaseCamp_Web_API.Api.Requests.Authentication;
+using BaseCamp_Web_API.Api.Responses.Authentication;
 using BaseCamp_Web_API.Api.Services;
 using BaseCamp_WEB_API.Core.Entities;
 using BaseCamp_WEB_API.Core.Entities.Authentication;
@@ -291,7 +295,7 @@ namespace BaseCamp_Web_API.Tests.Tests.Services
         public async void AuthService_UserRefreshesTokens_AuthenticationResponseWithRefreshTokenDoesNotExistError()
         {
             // Arrange
-            _fixture.JwtCfg.TokenLifetime = new TimeSpan(0, 0, 0, 0, 1);
+            _fixture.JwtCfg.TokenLifetime = new TimeSpan(0, 0, 0, 0, 10);
             var authResponse = await _fixture.TokenSrvc.GenerateTokenPairForUserAsync(_fixture.Users.First());
             var request = new RefreshTokenRequest
             {
@@ -315,8 +319,8 @@ namespace BaseCamp_Web_API.Tests.Tests.Services
         public async void AuthService_UserRefreshesTokens_AuthenticationResponseWithRefreshTokenHasExpiredError()
         {
             // Arrange
-            _fixture.JwtCfg.TokenLifetime = new TimeSpan(0, 0, 0, 0, 1);
-            _fixture.RefreshTokenCfg.TokenLifetime = new TimeSpan(0, 0, 0, 0, 1);
+            _fixture.JwtCfg.TokenLifetime = new TimeSpan(0, 1, 0, 0, 0);
+            _fixture.RefreshTokenCfg.TokenLifetime = new TimeSpan(1, 0, 0, 0, 0);
             var authResponse = await _fixture.TokenSrvc.GenerateTokenPairForUserAsync(_fixture.Users.First());
             var request = new RefreshTokenRequest
             {
@@ -326,7 +330,12 @@ namespace BaseCamp_Web_API.Tests.Tests.Services
             ((List<RefreshToken>)_fixture.RefreshTokens).Add(new RefreshToken { Token = request.RefreshToken });
 
             // Act
-            var response = await _fixture.AuthSrvc.RefreshTokenAsync(request);
+            var fakeDateTime = new DateTime(2050, 1, 1);
+            AuthenticationResponse response;
+            using (var dtContext = new DateTimeProviderContext(fakeDateTime))
+            {
+                response = await _fixture.AuthSrvc.RefreshTokenAsync(request);
+            }
 
             // Assert
             response.Success.Should().BeFalse();
@@ -341,7 +350,7 @@ namespace BaseCamp_Web_API.Tests.Tests.Services
         public async void AuthService_UserRefreshesTokens_AuthenticationResponseWithRevokedRefreshTokenError()
         {
             // Arrange
-            _fixture.JwtCfg.TokenLifetime = new TimeSpan(0, 0, 0, 0, 1);
+            _fixture.JwtCfg.TokenLifetime = new TimeSpan(0, 0, 5, 0, 0);
             var authResponse = await _fixture.TokenSrvc.GenerateTokenPairForUserAsync(_fixture.Users.First());
             var request = new RefreshTokenRequest
             {
@@ -356,7 +365,12 @@ namespace BaseCamp_Web_API.Tests.Tests.Services
             });
 
             // Act
-            var response = await _fixture.AuthSrvc.RefreshTokenAsync(request);
+            var fakeDateTime = DateTime.UtcNow.AddMinutes(10);
+            AuthenticationResponse response;
+            using (var dtContext = new DateTimeProviderContext(fakeDateTime))
+            {
+                response = await _fixture.AuthSrvc.RefreshTokenAsync(request);
+            }
 
             // Assert
             response.Success.Should().BeFalse();
@@ -371,7 +385,7 @@ namespace BaseCamp_Web_API.Tests.Tests.Services
         public async void AuthService_UserRefreshesTokens_AuthenticationResponseWithUsedRefreshTokenError()
         {
             // Arrange
-            _fixture.JwtCfg.TokenLifetime = new TimeSpan(0, 0, 0, 0, 1);
+            _fixture.JwtCfg.TokenLifetime = new TimeSpan(0, 0, 5, 0, 0);
             var authResponse = await _fixture.TokenSrvc.GenerateTokenPairForUserAsync(_fixture.Users.First());
             var request = new RefreshTokenRequest
             {
@@ -386,7 +400,12 @@ namespace BaseCamp_Web_API.Tests.Tests.Services
             });
 
             // Act
-            var response = await _fixture.AuthSrvc.RefreshTokenAsync(request);
+            var fakeDateTime = DateTime.UtcNow.AddMinutes(10);
+            AuthenticationResponse response;
+            using (var dtContext = new DateTimeProviderContext(fakeDateTime))
+            {
+                response = await _fixture.AuthSrvc.RefreshTokenAsync(request);
+            }
 
             // Assert
             response.Success.Should().BeFalse();

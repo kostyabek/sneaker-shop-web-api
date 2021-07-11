@@ -2072,6 +2072,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
+          "Microsoft.EntityFrameworkCore": "5.0.7",
           "SqlKata": "2.3.7",
           "Swashbuckle.AspNetCore": "6.1.4"
         },
@@ -7563,6 +7564,7 @@
     "net5.0": [
       "FluentAssertions >= 5.10.3",
       "FluentAssertions.Analyzers >= 0.11.4",
+      "Microsoft.EntityFrameworkCore >= 5.0.7",
       "Microsoft.NET.Test.Sdk >= 16.10.0",
       "Moq >= 4.16.1",
       "SneakerShop.Api >= 1.0.0",
@@ -7622,6 +7624,10 @@
           "FluentAssertions.Analyzers": {
             "target": "Package",
             "version": "[0.11.4, )"
+          },
+          "Microsoft.EntityFrameworkCore": {
+            "target": "Package",
+            "version": "[5.0.7, )"
           },
           "Microsoft.NET.Test.Sdk": {
             "target": "Package",

@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
+using BaseCamp_Web_API.Api.Abstractions.Services;
 using BaseCamp_Web_API.Api.Requests.Authentication;
 using BaseCamp_Web_API.Api.Responses.Authentication;
-using BaseCamp_Web_API.Api.ServiceAbstractions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BaseCamp_Web_API.Api.Controllers

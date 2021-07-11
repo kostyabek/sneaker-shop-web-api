@@ -4,9 +4,54 @@
         <name>SneakerShop.Api</name>
     </assembly>
     <members>
+        <member name="T:BaseCamp_Web_API.Api.Abstractions.Services.IAuthService">
+            <summary>
+            Contains members to be implemented by UserService.
+            </summary>
+        </member>
+        <member name="M:BaseCamp_Web_API.Api.Abstractions.Services.IAuthService.RegisterAsync(BaseCamp_Web_API.Api.Requests.Authentication.RegisterUserRequest)">
+            <summary>
+            Registers new users asynchronously.
+            </summary>
+            <param name="request">Contains user registration info.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> with access and refresh tokens. If errors occured, then the list of them.</returns>
+        </member>
+        <member name="M:BaseCamp_Web_API.Api.Abstractions.Services.IAuthService.LoginAsync(BaseCamp_Web_API.Api.Requests.Authentication.LoginUserRequest)">
+            <summary>
+            Log-ins existing users asynchronously.
+            </summary>
+            <param name="request">Contains user log-in credentials.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> with access and refresh tokens. If errors occured, then the list of them.</returns>
+        </member>
+        <member name="M:BaseCamp_Web_API.Api.Abstractions.Services.IAuthService.RefreshTokenAsync(BaseCamp_Web_API.Api.Requests.Authentication.RefreshTokenRequest)">
+            <summary>
+            Renews refresh token for a user.
+            </summary>
+            <param name="request">Token data.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> with access and refresh tokens. If errors occured, then the list of them.</returns>
+        </member>
+        <member name="T:BaseCamp_Web_API.Api.Abstractions.Services.ITokenService">
+            <summary>
+            Contains members to be implemented by <see cref="T:BaseCamp_Web_API.Api.Services.TokenService"/>.
+            </summary>
+        </member>
+        <member name="M:BaseCamp_Web_API.Api.Abstractions.Services.ITokenService.GenerateTokenPairForUserAsync(BaseCamp_WEB_API.Core.Entities.User)">
+            <summary>
+            Generates a JWT-token/refresh-token pair.
+            </summary>
+            <param name="user">User entity to get info from.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BaseCamp_Web_API.Api.Abstractions.Services.ITokenService.RandomString(System.Int32)">
+            <summary>
+            Generates a random string of a given length.
+            </summary>
+            <param name="length">String length.</param>
+            <returns>A randomly generated string.</returns>
+        </member>
         <member name="T:BaseCamp_Web_API.Api.Configuration.JwtConfig">
             <summary>
-            Contains JWT secret key.
+            Contains JWT secret key and token lifetime.
             </summary>
         </member>
         <member name="P:BaseCamp_Web_API.Api.Configuration.JwtConfig.Secret">
@@ -17,6 +62,16 @@
         <member name="P:BaseCamp_Web_API.Api.Configuration.JwtConfig.TokenLifetime">
             <summary>
             Gets or sets JWT token lifetime.
+            </summary>
+        </member>
+        <member name="T:BaseCamp_Web_API.Api.Configuration.RefreshTokenConfig">
+            <summary>
+            Contains refresh-token lifetime.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Api.Configuration.RefreshTokenConfig.TokenLifetime">
+            <summary>
+            Gets or sets token lifetime.
             </summary>
         </member>
         <member name="T:BaseCamp_Web_API.Api.Controllers.AdminController">
@@ -68,7 +123,7 @@
             Controller for authentication processes.
             </summary>
         </member>
-        <member name="M:BaseCamp_Web_API.Api.Controllers.AuthController.#ctor(BaseCamp_Web_API.Api.ServiceAbstractions.IAuthService)">
+        <member name="M:BaseCamp_Web_API.Api.Controllers.AuthController.#ctor(BaseCamp_Web_API.Api.Abstractions.Services.IAuthService)">
             <summary>
             Initializes a new instance of the <see cref="T:BaseCamp_Web_API.Api.Controllers.AuthController"/> class.
             </summary>
@@ -268,6 +323,46 @@
             Initializes a new instance of the <see cref="T:BaseCamp_Web_API.Api.MappingProfile"/> class.
             </summary>
         </member>
+        <member name="T:BaseCamp_Web_API.Api.Providers.DateAndTime.DateTimeProvider">
+            <summary>
+            Provides date and time depending on the context of use.
+            </summary>
+        </member>
+        <member name="P:BaseCamp_Web_API.Api.Providers.DateAndTime.DateTimeProvider.Instance">
+            <summary>
+            Gets return the instance of the provider.
+            </summary>
+        </member>
+        <member name="M:BaseCamp_Web_API.Api.Providers.DateAndTime.DateTimeProvider.GetUtcNow">
+            <summary>
+            Gives current date and time.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BaseCamp_Web_API.Api.Providers.DateAndTime.DateTimeProviderContext">
+            <summary>
+            Contains functionality for setting custom date and time in correspondent contexts of use.
+            </summary>
+        </member>
+        <member name="F:BaseCamp_Web_API.Api.Providers.DateAndTime.DateTimeProviderContext.ContextDateTimeUtcNow">
+            <summary>
+            Contains date and time set for the current context.
+            </summary>
+        </member>
+        <member name="M:BaseCamp_Web_API.Api.Providers.DateAndTime.DateTimeProviderContext.#ctor(System.DateTime)">
+            <summary>
+            Initializes a new instance of the <see cref="T:BaseCamp_Web_API.Api.Providers.DateAndTime.DateTimeProviderContext"/> class.
+            </summary>
+            <param name="contextDateTimeUtcNow">Date and time to be set for current context.</param>
+        </member>
+        <member name="P:BaseCamp_Web_API.Api.Providers.DateAndTime.DateTimeProviderContext.Current">
+            <summary>
+            Gets the most recent context instance.
+            </summary>
+        </member>
+        <member name="M:BaseCamp_Web_API.Api.Providers.DateAndTime.DateTimeProviderContext.Dispose">
+            <inheritdoc/>
+        </member>
         <member name="T:BaseCamp_Web_API.Api.Requests.Authentication.LoginUserRequest">
             <summary>
             Contains user log-in credentials.
@@ -373,9 +468,9 @@
             Entity for "update" requests.
             </summary>
         </member>
-        <member name="T:BaseCamp_Web_API.Api.Requests.Roles.CreateUserRoleRequest">
+        <member name="P:BaseCamp_Web_API.Api.Requests.Orders.UpdateOrderRequest.StatusId">
             <summary>
-            
+            Gets or sets order status ID.
             </summary>
         </member>
         <member name="T:BaseCamp_Web_API.Api.Requests.Sneakers.CreateSneakerRequest">
@@ -563,57 +658,12 @@
             Gets or sets user's sex.
             </summary>
         </member>
-        <member name="T:BaseCamp_Web_API.Api.ServiceAbstractions.IAuthService">
-            <summary>
-            Contains members to be implemented by UserService.
-            </summary>
-        </member>
-        <member name="M:BaseCamp_Web_API.Api.ServiceAbstractions.IAuthService.RegisterAsync(BaseCamp_Web_API.Api.Requests.Authentication.RegisterUserRequest)">
-            <summary>
-            Registers new users asynchronously.
-            </summary>
-            <param name="request">Contains user registration info.</param>
-            <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> with access and refresh tokens. If errors occured, then the list of them.</returns>
-        </member>
-        <member name="M:BaseCamp_Web_API.Api.ServiceAbstractions.IAuthService.LoginAsync(BaseCamp_Web_API.Api.Requests.Authentication.LoginUserRequest)">
-            <summary>
-            Log-ins existing users asynchronously.
-            </summary>
-            <param name="request">Contains user log-in credentials.</param>
-            <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> with access and refresh tokens. If errors occured, then the list of them.</returns>
-        </member>
-        <member name="M:BaseCamp_Web_API.Api.ServiceAbstractions.IAuthService.RefreshTokenAsync(BaseCamp_Web_API.Api.Requests.Authentication.RefreshTokenRequest)">
-            <summary>
-            Renews refresh token for a user.
-            </summary>
-            <param name="request">Token data.</param>
-            <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> with access and refresh tokens. If errors occured, then the list of them.</returns>
-        </member>
-        <member name="T:BaseCamp_Web_API.Api.ServiceAbstractions.ITokenService">
-            <summary>
-            Contains members to be implemented by <see cref="T:BaseCamp_Web_API.Api.Services.TokenService"/>.
-            </summary>
-        </member>
-        <member name="M:BaseCamp_Web_API.Api.ServiceAbstractions.ITokenService.GenerateTokenPairForUserAsync(BaseCamp_WEB_API.Core.Entities.User)">
-            <summary>
-            Generates a JWT-token/refresh-token pair.
-            </summary>
-            <param name="user">User entity to get info from.</param>
-            <returns></returns>
-        </member>
-        <member name="M:BaseCamp_Web_API.Api.ServiceAbstractions.ITokenService.RandomString(System.Int32)">
-            <summary>
-            Generates a random string of a given length.
-            </summary>
-            <param name="length">String length.</param>
-            <returns>A randomly generated string.</returns>
-        </member>
         <member name="T:BaseCamp_Web_API.Api.Services.AuthService">
             <summary>
             Contains functionality for authentication.
             </summary>
         </member>
-        <member name="M:BaseCamp_Web_API.Api.Services.AuthService.#ctor(BaseCamp_WEB_API.Core.RepositoryAbstractions.IUserRepository,Microsoft.AspNetCore.Identity.IPasswordHasher{BaseCamp_WEB_API.Core.Entities.User},AutoMapper.IMapper,Microsoft.IdentityModel.Tokens.TokenValidationParameters,BaseCamp_WEB_API.Core.RepositoryAbstractions.IRefreshTokenRepository,BaseCamp_Web_API.Api.ServiceAbstractions.ITokenService)">
+        <member name="M:BaseCamp_Web_API.Api.Services.AuthService.#ctor(BaseCamp_WEB_API.Core.RepositoryAbstractions.IUserRepository,Microsoft.AspNetCore.Identity.IPasswordHasher{BaseCamp_WEB_API.Core.Entities.User},AutoMapper.IMapper,Microsoft.IdentityModel.Tokens.TokenValidationParameters,BaseCamp_WEB_API.Core.RepositoryAbstractions.IRefreshTokenRepository,BaseCamp_Web_API.Api.Abstractions.Services.ITokenService)">
             <summary>
             Initializes a new instance of the <see cref="T:BaseCamp_Web_API.Api.Services.AuthService"/> class.
             </summary>
@@ -638,7 +688,7 @@
             Contains functionality for token generation.
             </summary>
         </member>
-        <member name="M:BaseCamp_Web_API.Api.Services.TokenService.#ctor(BaseCamp_Web_API.Api.Configuration.JwtConfig,BaseCamp_Web_API.Api.Configuration.RefreshTokenConfig,BaseCamp_WEB_API.Core.RepositoryAbstractions.IRefreshTokenRepository,BaseCamp_WEB_API.Data.Contexts.PolicyAuthorizationContext)">
+        <member name="M:BaseCamp_Web_API.Api.Services.TokenService.#ctor(BaseCamp_Web_API.Api.Configuration.JwtConfig,BaseCamp_Web_API.Api.Configuration.RefreshTokenConfig,BaseCamp_WEB_API.Core.RepositoryAbstractions.IRefreshTokenRepository,BaseCamp_WEB_API.Core.DbContextAbstractions.IPolicyAuthorizationDbContext)">
             <summary>
             Initializes a new instance of the <see cref="T:BaseCamp_Web_API.Api.Services.TokenService"/> class.
             </summary>

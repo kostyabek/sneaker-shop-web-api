@@ -2,7 +2,7 @@
 using BaseCamp_Web_API.Api.Requests.Authentication;
 using BaseCamp_Web_API.Api.Responses.Authentication;
 
-namespace BaseCamp_Web_API.Api.ServiceAbstractions
+namespace BaseCamp_Web_API.Api.Abstractions.Services
 {
     /// <summary>
     /// Contains members to be implemented by UserService.

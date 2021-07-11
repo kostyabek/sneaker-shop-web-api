@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using BaseCamp_Web_API.Api.Abstractions.Services;
 using BaseCamp_Web_API.Api.Controllers;
 using BaseCamp_Web_API.Api.Requests.Authentication;
 using BaseCamp_Web_API.Api.Responses.Authentication;
-using BaseCamp_Web_API.Api.ServiceAbstractions;
 using BaseCamp_WEB_API.Core.Entities;
 using BaseCamp_WEB_API.Core.Entities.Authentication;
 using BaseCamp_WEB_API.Core.Enums;

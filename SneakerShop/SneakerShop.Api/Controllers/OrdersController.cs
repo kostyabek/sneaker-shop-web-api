@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
+using BaseCamp_Web_API.Api.Providers.DateAndTime;
 using BaseCamp_Web_API.Api.Requests.Orders;
 using BaseCamp_Web_API.Api.Responses;
 using BaseCamp_WEB_API.Core;
@@ -57,7 +58,7 @@ namespace BaseCamp_Web_API.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateAsync([FromBody] CreateOrderRequest orderRequest)
         {
-            orderRequest.DateTimeStamp = DateTime.Now;
+            orderRequest.DateTimeStamp = DateTimeProvider.Instance.GetUtcNow();
             var order = _mapper.Map<Order>(orderRequest);
             order.StatusId = OrderStatuses.Accepted;
             Order orderResponse;
@@ -111,8 +112,8 @@ namespace BaseCamp_Web_API.Api.Controllers
             try
             {
                 var userId = int.Parse(User.FindFirst(ClaimTypes.Sid)?.Value);
-                var userOrders = await _orderRepository
-                    .GetByUserIdAsync(int.Parse(User.FindFirst(ClaimTypes.Sid)?.Value));
+
+                var userOrders = await _orderRepository.GetByUserIdAsync(userId);
                 if (!userOrders.Any(o => o.Id == id))
                 {
                     return NotFound("There is no order with such ID for this user!");

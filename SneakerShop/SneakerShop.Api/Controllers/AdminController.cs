@@ -51,7 +51,7 @@ namespace BaseCamp_Web_API.Api.Controllers
         /// </summary>
         /// <param name="paginationFilter">Contains offset and limit for a database query.</param>
         /// <returns>Collection of <see cref="Order"/> from database in <see cref="OkObjectResult"/>.</returns>
-        [HttpGet]
+        [HttpGet("orders")]
         public async Task<IActionResult> GetAllOrdersAsync([FromQuery] PaginationFilter paginationFilter)
         {
             var orders = _mapper.Map<IEnumerable<OrderResponse>>(await _orderRepository.GetAllAsync(paginationFilter));

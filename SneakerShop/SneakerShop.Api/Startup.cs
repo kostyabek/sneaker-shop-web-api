@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Text;
+using BaseCamp_Web_API.Api.Abstractions.Services;
 using BaseCamp_Web_API.Api.Configuration;
-using BaseCamp_Web_API.Api.ServiceAbstractions;
 using BaseCamp_Web_API.Api.Services;
+using BaseCamp_WEB_API.Core.DbContextAbstractions;
 using BaseCamp_WEB_API.Core.Entities;
-using BaseCamp_WEB_API.Core.Entities.Authorization.Filters;
 using BaseCamp_WEB_API.Core.Entities.Authorization.Requirements;
 using BaseCamp_WEB_API.Core.RepositoryAbstractions;
 using BaseCamp_WEB_API.Data.Contexts;
@@ -47,7 +47,7 @@ namespace BaseCamp_Web_API.Api
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo {Title = "BaseCamp_Web_API", Version = "v1"});
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "BaseCamp_Web_API", Version = "v1" });
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
@@ -82,7 +82,7 @@ namespace BaseCamp_Web_API.Api
 
             services.AddTransient<ISneakerRepository, SneakerRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
-            services.AddScoped<IUserRoleWithPrivilegesRepository, UserRoleWithPrivilegesRepository>();
+            services.AddTransient<IUserRoleWithPrivilegesRepository, UserRoleWithPrivilegesRepository>();
             services.AddTransient<IAuthService, AuthService>();
             services.AddTransient<ITokenService, TokenService>();
             services.AddTransient<IOrderRepository, OrderRepository>();
@@ -90,6 +90,7 @@ namespace BaseCamp_Web_API.Api
             services.AddTransient<IVendorRepository, VendorRepository>();
             services.AddTransient<ISeasonRepository, SeasonRepository>();
             services.AddTransient<IRefreshTokenRepository, RefreshTokenRepository>();
+            services.AddScoped<IPolicyAuthorizationDbContext, PolicyAuthorizationContext>();
 
             var mySqlConnectionString = Configuration.GetConnectionString("MySQLServer");
             services.AddDbContext<PolicyAuthorizationContext>(options =>

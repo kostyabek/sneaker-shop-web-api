@@ -3,7 +3,7 @@ using BaseCamp_Web_API.Api.Responses.Authentication;
 using BaseCamp_Web_API.Api.Services;
 using BaseCamp_WEB_API.Core.Entities;
 
-namespace BaseCamp_Web_API.Api.ServiceAbstractions
+namespace BaseCamp_Web_API.Api.Abstractions.Services
 {
     /// <summary>
     /// Contains members to be implemented by <see cref="TokenService"/>.

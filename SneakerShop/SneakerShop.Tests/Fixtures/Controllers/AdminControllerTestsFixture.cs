@@ -20,6 +20,11 @@ namespace BaseCamp_Web_API.Tests.Fixtures.Controllers
     public class AdminControllerTestsFixture
     {
         /// <summary>
+        /// Mapper.
+        /// </summary>
+        public readonly IMapper Mapper;
+
+        /// <summary>
         /// Controller for endpoint testing.
         /// </summary>
         public readonly AdminController Controller;
@@ -38,11 +43,6 @@ namespace BaseCamp_Web_API.Tests.Fixtures.Controllers
         /// Sneaker info for orders for testing.
         /// </summary>
         public IEnumerable<OrderSneakerPair> OrderSneakers;
-
-        /// <summary>
-        /// Mapper.
-        /// </summary>
-        public readonly IMapper Mapper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AdminControllerTestsFixture"/> class.

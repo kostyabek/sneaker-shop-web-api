@@ -5,13 +5,15 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using BaseCamp_Web_API.Api.Abstractions.Services;
 using BaseCamp_Web_API.Api.Configuration;
+using BaseCamp_Web_API.Api.Providers.DateAndTime;
 using BaseCamp_Web_API.Api.Responses.Authentication;
-using BaseCamp_Web_API.Api.ServiceAbstractions;
+using BaseCamp_WEB_API.Core.DbContextAbstractions;
 using BaseCamp_WEB_API.Core.Entities;
 using BaseCamp_WEB_API.Core.Entities.Authentication;
+using BaseCamp_WEB_API.Core.ExtensionMethods;
 using BaseCamp_WEB_API.Core.RepositoryAbstractions;
-using BaseCamp_WEB_API.Data.Contexts;
 using Microsoft.IdentityModel.Tokens;
 
 namespace BaseCamp_Web_API.Api.Services
@@ -24,7 +26,7 @@ namespace BaseCamp_Web_API.Api.Services
         private readonly JwtConfig _jwtConfig;
         private readonly RefreshTokenConfig _refreshTokenConfig;
         private readonly IRefreshTokenRepository _refreshTokenRepository;
-        private readonly PolicyAuthorizationContext _policyAuthorizationContext;
+        private readonly IPolicyAuthorizationDbContext _policyAuthorizationContext;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TokenService"/> class.
@@ -36,7 +38,7 @@ namespace BaseCamp_Web_API.Api.Services
         public TokenService(JwtConfig jwtConfig,
             RefreshTokenConfig refreshTokenConfig,
             IRefreshTokenRepository refreshTokenRepository,
-            PolicyAuthorizationContext policyAuthorizationContext)
+            IPolicyAuthorizationDbContext policyAuthorizationContext)
         {
             _jwtConfig = jwtConfig;
             _refreshTokenConfig = refreshTokenConfig;
@@ -60,28 +62,11 @@ namespace BaseCamp_Web_API.Api.Services
                     new Claim(ClaimTypes.Role, user.RoleId.ToString()),
                     new Claim(JwtRegisteredClaimNames.Jti, guid)
                 }),
-                Expires = DateTime.UtcNow.Add(_jwtConfig.TokenLifetime),
+                Expires = DateTimeProvider.Instance.GetUtcNow().Add(_jwtConfig.TokenLifetime),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha512Signature)
             };
 
-            var userPolicyPairs = _policyAuthorizationContext
-                .UserPolicyPairRecords.Where(r => r.UserId == user.Id)
-                .ToList();
-            foreach (var userPolicyPair in userPolicyPairs)
-            {
-                var policyClaimPairs = _policyAuthorizationContext
-                    .PolicyClaimPairRecords.Where(r => r.PolicyId == userPolicyPair.PolicyId)
-                    .ToList();
-                foreach (var policyClaimPair in policyClaimPairs)
-                {
-                    var claim = _policyAuthorizationContext
-                        .ClaimRecords.FirstOrDefault(r => r.Id == policyClaimPair.ClaimId);
-                    if (claim != null)
-                    {
-                        ((List<Claim>)tokenDescriptor.Subject.Claims).Add(new Claim(claim.Type, claim.Value));
-                    }
-                }
-            }
+            AttachUserSpecificClaimsAsync(user, tokenDescriptor);
 
             var token = jwtTokenHandler.CreateToken(tokenDescriptor);
             var jwtToken = jwtTokenHandler.WriteToken(token);
@@ -92,8 +77,8 @@ namespace BaseCamp_Web_API.Api.Services
                 IsUsed = false,
                 IsRevoked = false,
                 UserId = user.Id,
-                CreationDate = DateTime.UtcNow,
-                ExpiryDate = DateTime.UtcNow.Add(_refreshTokenConfig.TokenLifetime),
+                CreationDate = DateTimeProvider.Instance.GetUtcNow(),
+                ExpiryDate = DateTimeProvider.Instance.GetUtcNow().Add(_refreshTokenConfig.TokenLifetime),
                 Token = RandomString(25) + Guid.NewGuid()
             };
 
@@ -116,6 +101,30 @@ namespace BaseCamp_Web_API.Api.Services
                 .Repeat(alphabet, length)
                 .Select(s => s[random.Next(s.Length)])
                 .ToArray());
+        }
+
+        private async void AttachUserSpecificClaimsAsync(User user, SecurityTokenDescriptor tokenDescriptor)
+        {
+            var userPolicyPairs = await _policyAuthorizationContext
+                .UserPolicyPairRecords.Where(r => r.UserId == user.Id)
+                .ToListSafeAsync();
+            foreach (var userPolicyPair in userPolicyPairs)
+            {
+                var policyClaimPairs = await _policyAuthorizationContext
+                    .PolicyClaimPairRecords.Where(r => r.PolicyId == userPolicyPair.PolicyId)
+                    .ToListSafeAsync();
+                foreach (var policyClaimPair in policyClaimPairs)
+                {
+                    var claims = await _policyAuthorizationContext
+                        .ClaimRecords.Where(r => r.Id == policyClaimPair.ClaimId)
+                        .ToListSafeAsync();
+                    var claim = claims.FirstOrDefault();
+                    if (claim != null)
+                    {
+                        ((List<Claim>)tokenDescriptor.Subject.Claims).Add(new Claim(claim.Type, claim.Value));
+                    }
+                }
+            }
         }
     }
 }

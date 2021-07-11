@@ -5,9 +5,10 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
+using BaseCamp_Web_API.Api.Abstractions.Services;
+using BaseCamp_Web_API.Api.Providers.DateAndTime;
 using BaseCamp_Web_API.Api.Requests.Authentication;
 using BaseCamp_Web_API.Api.Responses.Authentication;
-using BaseCamp_Web_API.Api.ServiceAbstractions;
 using BaseCamp_WEB_API.Core.Entities;
 using BaseCamp_WEB_API.Core.Enums;
 using BaseCamp_WEB_API.Core.RepositoryAbstractions;
@@ -156,7 +157,7 @@ namespace BaseCamp_Web_API.Api.Services
 
             var expiryDateTimeUtc = UnixTimeStampToDateTime(expiryDateUnix);
 
-            if (expiryDateTimeUtc > DateTime.UtcNow)
+            if (expiryDateTimeUtc > DateTimeProvider.Instance.GetUtcNow())
             {
                 return new AuthenticationResponse
                 {
@@ -181,7 +182,7 @@ namespace BaseCamp_Web_API.Api.Services
                 };
             }
 
-            if (DateTime.UtcNow > storedRefreshToken.ExpiryDate)
+            if (DateTimeProvider.Instance.GetUtcNow() > storedRefreshToken.ExpiryDate)
             {
                 return new AuthenticationResponse
                 {
@@ -277,9 +278,9 @@ namespace BaseCamp_Web_API.Api.Services
 
         private DateTime UnixTimeStampToDateTime(double unixTimeStamp)
         {
-            var dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
-            dtDateTime = dtDateTime.AddSeconds(unixTimeStamp).ToUniversalTime();
-            return dtDateTime;
+            var dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+            dateTime = dateTime.AddSeconds(unixTimeStamp).ToUniversalTime();
+            return dateTime;
         }
     }
 }

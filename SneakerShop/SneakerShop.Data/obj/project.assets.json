@@ -1409,6 +1409,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
+          "Microsoft.EntityFrameworkCore": "5.0.7",
           "SqlKata": "2.3.7",
           "Swashbuckle.AspNetCore": "6.1.4"
         },

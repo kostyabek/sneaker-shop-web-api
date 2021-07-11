@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using BaseCamp_Web_API.Api.Requests;
+using System.Security.Claims;
 using BaseCamp_Web_API.Api.Requests.Orders;
 using BaseCamp_WEB_API.Core.Entities;
 using BaseCamp_WEB_API.Core.Enums;
-using BaseCamp_WEB_API.Core.Filters;
 using BaseCamp_Web_API.Tests.Fixtures.Controllers;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
@@ -64,7 +63,7 @@ namespace BaseCamp_Web_API.Tests.Tests.Controllers
         }
 
         /// <summary>
-        /// Tests controller response when fetching a order by invalid ID.
+        /// Tests controller response when fetching an order by invalid ID.
         /// </summary>
         /// <param name="id">ID of an order to get.</param>
         [Theory]
@@ -83,7 +82,24 @@ namespace BaseCamp_Web_API.Tests.Tests.Controllers
         }
 
         /// <summary>
-        /// Tests controller response when fetching a order by valid ID.
+        /// Tests controller response when fetching another user's order.
+        /// </summary>
+        [Fact]
+        public async void OrdersController_FetchingAnotherUserOrderByID_NotFoundResult()
+        {
+            // Arrange
+            var existingOrderId = 2;
+
+            // Act
+            var actionResult = await _fixture.Controller.GetByIdForUserAsync(existingOrderId);
+
+            // Assert
+            actionResult.Should().BeOfType<NotFoundObjectResult>()
+                .Which.Value.Should().Be("There is no order with such ID for this user!");
+        }
+
+        /// <summary>
+        /// Tests controller response when fetching an order by valid ID.
         /// </summary>
         [Fact]
         public async void OrdersController_FetchingOrderByID_OkObjectResultWithIEnumerableWithOrder()

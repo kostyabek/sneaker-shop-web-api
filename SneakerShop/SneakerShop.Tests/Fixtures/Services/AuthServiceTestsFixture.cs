@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using AutoMapper;
 using BaseCamp_Web_API.Api;
+using BaseCamp_Web_API.Api.Abstractions.Services;
 using BaseCamp_Web_API.Api.Configuration;
-using BaseCamp_Web_API.Api.ServiceAbstractions;
 using BaseCamp_Web_API.Api.Services;
+using BaseCamp_WEB_API.Core.DbContextAbstractions;
 using BaseCamp_WEB_API.Core.Entities;
 using BaseCamp_WEB_API.Core.Entities.Authentication;
+using BaseCamp_WEB_API.Core.Entities.Authorization;
 using BaseCamp_WEB_API.Core.Enums;
 using BaseCamp_WEB_API.Data.Contexts;
 using BaseCamp_WEB_API.Data.Repositories;
@@ -115,9 +118,16 @@ namespace BaseCamp_Web_API.Tests.Fixtures.Services
                 ValidateLifetime = true
             };
 
-            var policyAuthorizationContextMock = new Mock<PolicyAuthorizationContext>();
+            var userPolicyPairRecords = DbContextMockHelper.GetQueryableMockDbSet(GetUserPolicyPairs().ToList());
+            var policyClaimPairRecords = DbContextMockHelper.GetQueryableMockDbSet(GetPolicyClaimPairs().ToList());
+            var claimRecords = DbContextMockHelper.GetQueryableMockDbSet(GetClaims().ToList());
 
-            TokenSrvc = new TokenService(JwtCfg, RefreshTokenCfg, refreshTokenRepositoryMock.Object);
+            var policyAuthorizationContextMock = new Mock<IPolicyAuthorizationDbContext>();
+            policyAuthorizationContextMock.Setup(c => c.UserPolicyPairRecords).Returns(userPolicyPairRecords);
+            policyAuthorizationContextMock.Setup(c => c.PolicyClaimPairRecords).Returns(policyClaimPairRecords);
+            policyAuthorizationContextMock.Setup(c => c.ClaimRecords).Returns(claimRecords);
+
+            TokenSrvc = new TokenService(JwtCfg, RefreshTokenCfg, refreshTokenRepositoryMock.Object, policyAuthorizationContextMock.Object);
 
             AuthSrvc = new AuthService(userRepositoryMock.Object,
                 passwordHasher,
@@ -147,7 +157,7 @@ namespace BaseCamp_Web_API.Tests.Fixtures.Services
                     Age = 69,
                     Id = 1,
                     GenderId = 1,
-                    RoleId = UserRoles.Customer
+                    RoleId = UserRoles.Admin
                 },
                 new ()
                 {
@@ -216,6 +226,42 @@ namespace BaseCamp_Web_API.Tests.Fixtures.Services
         public IEnumerable<User> GetUserByUsername(string username)
         {
             return Users.Where(u => string.Equals(u.Username, username));
+        }
+
+        /// <summary>
+        /// Returns a collection of policy ID and user ID it is attached to for testing.
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<UserPolicyPair> GetUserPolicyPairs()
+        {
+            return new List<UserPolicyPair>
+            {
+                new () { Id = 1, PolicyId = 1, UserId = 1 }
+            };
+        }
+
+        /// <summary>
+        /// Returns a collection of policy ID and claim ID it is attached to for testing.
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<PolicyClaimPair> GetPolicyClaimPairs()
+        {
+            return new List<PolicyClaimPair>
+            {
+                new () { Id = 1, PolicyId = 1, ClaimId = 1 }
+            };
+        }
+
+        /// <summary>
+        /// Returns a collection of policy ID and user ID it is attached to for testing.
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<ClaimRecord> GetClaims()
+        {
+            return new List<ClaimRecord>
+            {
+                new () { Id = 1, Type = "CanReadUsers", Value = "1" }
+            };
         }
 
         /// <summary>

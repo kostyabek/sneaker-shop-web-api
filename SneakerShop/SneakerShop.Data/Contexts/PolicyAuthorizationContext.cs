@@ -1,4 +1,5 @@
-﻿using BaseCamp_WEB_API.Core.Entities.Authorization;
+﻿using BaseCamp_WEB_API.Core.DbContextAbstractions;
+using BaseCamp_WEB_API.Core.Entities.Authorization;
 using Microsoft.EntityFrameworkCore;
 
 namespace BaseCamp_WEB_API.Data.Contexts
@@ -6,7 +7,7 @@ namespace BaseCamp_WEB_API.Data.Contexts
     /// <summary>
     /// Context for working with <see cref="UserRoleWithPrivileges"/> DB data.
     /// </summary>
-    public sealed class PolicyAuthorizationContext : DbContext
+    public sealed class PolicyAuthorizationContext : DbContext, IPolicyAuthorizationDbContext
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PolicyAuthorizationContext"/> class.
@@ -17,30 +18,24 @@ namespace BaseCamp_WEB_API.Data.Contexts
             Database.EnsureCreated();
         }
 
-        /// <summary>
-        /// Gets or sets collection of <see cref="ClaimRecord"/> records.
-        /// </summary>
+        /// <inheritdoc/>
         public DbSet<ClaimRecord> ClaimRecords { get; set; }
 
-        /// <summary>
-        /// Gets or sets collection of <see cref="PolicyRecord"/> records.
-        /// </summary>
+        /// <inheritdoc/>
         public DbSet<PolicyRecord> PolicyRecords { get; set; }
 
-        /// <summary>
-        /// Gets or sets collection of <see cref="PolicyClaimPair"/> records.
-        /// </summary>
+        /// <inheritdoc/>
         public DbSet<PolicyClaimPair> PolicyClaimPairRecords { get; set; }
 
-        /// <summary>
-        /// Gets or sets collection of <see cref="PolicyRecord"/> records.
-        /// </summary>
+        /// <inheritdoc/>
         public DbSet<UserPolicyPair> UserPolicyPairRecords { get; set; }
 
+        /// <inheritdoc/>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
         }
 
+        /// <inheritdoc/>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ClaimRecord>()

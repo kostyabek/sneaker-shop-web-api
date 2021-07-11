@@ -3,7 +3,7 @@
 namespace BaseCamp_Web_API.Api.Configuration
 {
     /// <summary>
-    /// Contains JWT secret key.
+    /// Contains JWT secret key and token lifetime.
     /// </summary>
     public class JwtConfig
     {

@@ -7,6 +7,9 @@ namespace BaseCamp_Web_API.Api.Requests.Orders
     /// </summary>
     public class UpdateOrderRequest : CreateOrderRequest
     {
+        /// <summary>
+        /// Gets or sets order status ID.
+        /// </summary>
         public OrderStatuses StatusId { get; set; }
     }
 }

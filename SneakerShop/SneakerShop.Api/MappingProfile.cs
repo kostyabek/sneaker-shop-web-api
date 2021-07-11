@@ -1,13 +1,10 @@
 ﻿using AutoMapper;
-using BaseCamp_Web_API.Api.Requests;
 using BaseCamp_Web_API.Api.Requests.Authentication;
 using BaseCamp_Web_API.Api.Requests.Orders;
-using BaseCamp_Web_API.Api.Requests.Roles;
 using BaseCamp_Web_API.Api.Requests.Sneakers;
 using BaseCamp_Web_API.Api.Requests.Users;
 using BaseCamp_Web_API.Api.Responses;
 using BaseCamp_WEB_API.Core.Entities;
-using BaseCamp_WEB_API.Core.Entities.Authorization;
 
 namespace BaseCamp_Web_API.Api
 {
@@ -32,10 +29,6 @@ namespace BaseCamp_Web_API.Api
             CreateMap<CreateSneakerRequest, Sneaker>();
             CreateMap<UpdateSneakerRequest, Sneaker>();
             CreateMap<Sneaker, SneakerResponse>();
-
-            CreateMap<CreateUserRoleRequest, UserRoleWithPrivileges>();
-            CreateMap<UpdateUserRoleRequest, UserRoleWithPrivileges>();
-            CreateMap<UserRoleWithPrivileges, UserRoleResponse>();
         }
     }
 }
